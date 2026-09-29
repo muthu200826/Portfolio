@@ -1956,6 +1956,13 @@ main {
   </div>
 </footer>
 
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init({ publicKey: "JxRBRYTdR7SiPsNjp" });
+</script>
+
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -2068,17 +2075,6 @@ document.querySelectorAll('#certifications .cert-link[data-cert]').forEach(card 
 /* ---------- Back to top ---------- */
 document.getElementById('toTop').addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
-/* ---------- Contact form (demo submit; wire EmailJS in production) ---------- */
-document.getElementById('contactForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const note = document.getElementById('formNote');
-  note.textContent = 'Thanks! Your message has been noted — I will reply soon.';
-  note.style.color = '#06B6D4';
-  e.target.reset();
-  /* To go live: integrate EmailJS here, e.g.
-     emailjs.sendForm('SERVICE_ID','TEMPLATE_ID', e.target, 'PUBLIC_KEY'); */
-});
-
 /* ---------- Neural network background canvas ---------- */
 const canvas = document.getElementById('neural-canvas');
 const ctx = canvas.getContext('2d');
@@ -2141,21 +2137,64 @@ drawNet();
 </script>
 
 <script>
-function sendEmail() {
-    const name = document.getElementById("fname").value;
-    const email = document.getElementById("femail").value;
-    const subject = document.getElementById("fsubject").value;
-    const message = document.getElementById("fmsg").value;
+async function sendEmail() {
+  const form = document.getElementById('contactForm');
+  const note = document.getElementById('formNote');
+  const button = form.querySelector('button[type="button"]');
 
-    const body =
-`Name: ${name}
-Email: ${email}
+  const name = document.getElementById('fname').value.trim();
+  const email = document.getElementById('femail').value.trim();
+  const subject = document.getElementById('fsubject').value.trim();
+  const message = document.getElementById('fmsg').value.trim();
 
-Message:
-${message}`;
+  if (!name || !email || !message) {
+    note.textContent = 'Please fill in your name, email and message.';
+    note.style.color = '#f87171';
+    return;
+  }
 
-    window.location.href =
-`mailto:muthukrishnan11028@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  if (!email.includes('@')) {
+    note.textContent = 'Please enter a valid email address.';
+    note.style.color = '#f87171';
+    return;
+  }
+
+  const originalHTML = button.innerHTML;
+  button.disabled = true;
+  button.style.opacity = '0.7';
+  button.innerHTML = 'Sending...';
+  note.textContent = 'Sending your message...';
+  note.style.color = '#94A3B8';
+
+  try {
+    await emailjs.send(
+      'service_85tw7dz',
+      'template_mtlcoma',
+      {
+        name: name,
+        customer_name: name,
+        from_name: name,
+        email: email,
+        from_email: email,
+        reply_to: email,
+        subject: subject || 'Portfolio Contact Message',
+        message: message,
+        user_message: message
+      }
+    );
+
+    note.textContent = '✓ Message sent successfully! I will get back to you soon.';
+    note.style.color = '#06B6D4';
+    form.reset();
+  } catch (error) {
+    console.error('EmailJS error:', error);
+    note.textContent = 'Unable to send the message right now. Please try again.';
+    note.style.color = '#f87171';
+  } finally {
+    button.disabled = false;
+    button.style.opacity = '';
+    button.innerHTML = originalHTML;
+  }
 }
 </script>
 </body>
