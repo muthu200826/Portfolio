@@ -1931,7 +1931,7 @@ main {
         </div>
         <div class="field"><label for="fsubject">Subject</label><input id="fsubject" name="subject" type="text" placeholder="What's this about?"></div>
         <div class="field"><label for="fmsg">Message</label><textarea id="fmsg" name="message" placeholder="Tell me about the opportunity or project..." required></textarea></div>
-        <button type="button" class="btn btn-primary" style="width:100%;" onclick="sendEmail()">
+        <button type="submit" class="btn btn-primary" style="width:100%;">
   Send Message
   <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="m22 2-7 20-4-9-9-4Z"/>
@@ -1956,13 +1956,7 @@ main {
   </div>
 </footer>
 
-
-<!-- EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-  emailjs.init({ publicKey: "JxRBRYTdR7SiPsNjp" });
-</script>
-
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -2075,6 +2069,54 @@ document.querySelectorAll('#certifications .cert-link[data-cert]').forEach(card 
 /* ---------- Back to top ---------- */
 document.getElementById('toTop').addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
+/* ---------- Contact form / EmailJS ---------- */
+const EMAILJS_PUBLIC_KEY = 'NnOtoGL1QWf-nTG-h';
+const EMAILJS_SERVICE_ID = 'service_42eyt6e';
+const EMAILJS_TEMPLATE_ID = 'template_se5vlv7';
+
+if (typeof emailjs !== 'undefined') {
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
+
+const contactForm = document.getElementById('contactForm');
+const formNote = document.getElementById('formNote');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const button = contactForm.querySelector('button[type="submit"]');
+    const originalHTML = button ? button.innerHTML : '';
+    const name = document.getElementById('fname')?.value.trim() || '';
+    const email = document.getElementById('femail')?.value.trim() || '';
+    const message = document.getElementById('fmsg')?.value.trim() || '';
+
+    if (!name || !email || !message) {
+      if (formNote) { formNote.textContent='Please fill in your name, email and message.'; formNote.style.color='#f87171'; }
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      if (formNote) { formNote.textContent='Please enter a valid email address.'; formNote.style.color='#f87171'; }
+      return;
+    }
+
+    if (button) { button.disabled=true; button.style.opacity='0.7'; button.innerHTML='Sending...'; }
+    if (formNote) { formNote.textContent='Sending your message...'; formNote.style.color='#94A3B8'; }
+
+    try {
+      if (typeof emailjs === 'undefined') throw new Error('EmailJS SDK could not be loaded.');
+      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm);
+      if (formNote) { formNote.textContent='✓ Message sent successfully! I will get back to you soon.'; formNote.style.color='#06B6D4'; }
+      contactForm.reset();
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      if (formNote) { formNote.textContent='✕ Message could not be sent. Please try again.'; formNote.style.color='#f87171'; }
+    } finally {
+      if (button) { button.disabled=false; button.style.opacity=''; button.innerHTML=originalHTML; }
+    }
+  });
+}
+
 /* ---------- Neural network background canvas ---------- */
 const canvas = document.getElementById('neural-canvas');
 const ctx = canvas.getContext('2d');
@@ -2136,66 +2178,6 @@ function drawNet(){
 drawNet();
 </script>
 
-<script>
-async function sendEmail() {
-  const form = document.getElementById('contactForm');
-  const note = document.getElementById('formNote');
-  const button = form.querySelector('button[type="button"]');
 
-  const name = document.getElementById('fname').value.trim();
-  const email = document.getElementById('femail').value.trim();
-  const subject = document.getElementById('fsubject').value.trim();
-  const message = document.getElementById('fmsg').value.trim();
-
-  if (!name || !email || !message) {
-    note.textContent = 'Please fill in your name, email and message.';
-    note.style.color = '#f87171';
-    return;
-  }
-
-  if (!email.includes('@')) {
-    note.textContent = 'Please enter a valid email address.';
-    note.style.color = '#f87171';
-    return;
-  }
-
-  const originalHTML = button.innerHTML;
-  button.disabled = true;
-  button.style.opacity = '0.7';
-  button.innerHTML = 'Sending...';
-  note.textContent = 'Sending your message...';
-  note.style.color = '#94A3B8';
-
-  try {
-    await emailjs.send(
-      'service_85tw7dz',
-      'template_mtlcoma',
-      {
-        name: name,
-        customer_name: name,
-        from_name: name,
-        email: email,
-        from_email: email,
-        reply_to: email,
-        subject: subject || 'Portfolio Contact Message',
-        message: message,
-        user_message: message
-      }
-    );
-
-    note.textContent = '✓ Message sent successfully! I will get back to you soon.';
-    note.style.color = '#06B6D4';
-    form.reset();
-  } catch (error) {
-    console.error('EmailJS error:', error);
-    note.textContent = 'Unable to send the message right now. Please try again.';
-    note.style.color = '#f87171';
-  } finally {
-    button.disabled = false;
-    button.style.opacity = '';
-    button.innerHTML = originalHTML;
-  }
-}
-</script>
 </body>
 </html>
