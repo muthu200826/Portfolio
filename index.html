@@ -1304,6 +1304,138 @@ main {
   #certifications .cert-image-wrap{height:125px;flex-basis:125px;}
 }
 </style>
+
+
+<style id="certificate-final-responsive">
+/* ===== FINAL CERTIFICATE LAYOUT ===== */
+#certifications .cert-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px;
+  align-items:stretch;
+}
+#certifications .cert-link{
+  display:block;
+  min-width:0;
+  height:100%;
+  color:inherit;
+  text-decoration:none;
+  cursor:pointer;
+}
+#certifications .cert-card{
+  width:100%;
+  height:350px;
+  min-height:350px;
+  padding:26px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  overflow:hidden;
+}
+#certifications .cert-card h4{
+  min-height:44px;
+  line-height:1.35;
+}
+#certifications .cert-card > span:not(.cert-file-type){
+  min-height:20px;
+}
+#certifications .cert-description{
+  min-height:42px;
+  margin:0;
+  color:var(--subtext);
+  font-size:12.8px;
+  line-height:1.6;
+}
+#certifications .cert-action-row{
+  margin-top:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  min-height:28px;
+}
+#certifications .cert-open-label{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:var(--accent);
+  font:600 11px/1 var(--font-accent);
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+#certifications .cert-open-label svg{
+  width:15px;
+  height:15px;
+  flex:0 0 auto;
+}
+#certifications .cert-file-type{
+  color:var(--subtext);
+  font:500 10px/1 var(--font-accent);
+  opacity:.82;
+}
+#certifications .download-certificate{
+  width:100%;
+  min-height:40px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:10px 13px;
+  border-radius:10px;
+  border:1px solid rgba(6,182,212,.32);
+  background:rgba(6,182,212,.08);
+  color:var(--accent);
+  font:600 11px/1 var(--font-accent);
+  text-decoration:none;
+  transition:all .3s ease;
+  cursor:pointer;
+  position:relative;
+  z-index:5;
+}
+#certifications .download-certificate:hover{
+  background:rgba(6,182,212,.16);
+  border-color:var(--accent);
+  transform:translateY(-2px);
+}
+#certifications .download-certificate svg{
+  width:15px;
+  height:15px;
+  flex:0 0 auto;
+}
+#certifications .cert-link:hover .cert-card{
+  transform:translateY(-7px);
+  border-color:rgba(6,182,212,.48);
+  box-shadow:0 18px 42px rgba(0,0,0,.24),0 0 28px rgba(6,182,212,.10);
+}
+#certifications .cert-link:focus-visible .cert-card{
+  outline:2px solid var(--accent);
+  outline-offset:4px;
+}
+@media (max-width:1100px){
+  #certifications .cert-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media (max-width:700px){
+  #certifications .cert-grid{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+  #certifications .cert-card{
+    height:320px;
+    min-height:320px;
+    padding:22px;
+  }
+}
+@media (max-width:380px){
+  #certifications .cert-card{
+    height:310px;
+    min-height:310px;
+    padding:20px;
+  }
+  #certifications .cert-card h4{
+    font-size:15px;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -1594,8 +1726,14 @@ main {
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
           <h4>Cloud Foundations</h4>
           <span>Cloud Computing</span>
-          <div class="cert-open-row"><span class="cert-open-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>Click to Open</span><span class="cert-file-type">PDF</span></div>
-          <a class="download-certificate" href="Muthukrishnan J__Cloud_Foundations__certificate.pdf" download="Cloud-Foundations-Certificate.pdf" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download</a>
+          <p class="cert-description">Cloud certificate</p>
+          <div class="cert-action-row">
+            <span class="cert-open-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>Click to Open</span>
+            <span class="cert-file-type">PDF</span>
+          </div>
+          <a class="download-certificate" href="Muthukrishnan J__Cloud_Foundations__certificate.pdf" download="Cloud-Foundations-Certificate.pdf" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download PDF
+          </a>
         </div>
       </div>
 
@@ -1604,8 +1742,14 @@ main {
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
           <h4>Linux Unhatched</h4>
           <span>Operating Systems</span>
-          <div class="cert-open-row"><span class="cert-open-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>Click to Open</span><span class="cert-file-type">PDF</span></div>
-          <a class="download-certificate" href="Muthukrishnan J __LinuxUnhatched_certificate.pdf" download="Linux-Unhatched-Certificate.pdf" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download</a>
+          <p class="cert-description">Linux certificate</p>
+          <div class="cert-action-row">
+            <span class="cert-open-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>Click to Open</span>
+            <span class="cert-file-type">PDF</span>
+          </div>
+          <a class="download-certificate" href="Muthukrishnan J __LinuxUnhatched_certificate.pdf" download="Linux-Unhatched-Certificate.pdf" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download PDF
+          </a>
         </div>
       </div>
 
@@ -1614,8 +1758,14 @@ main {
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h.01M10 12h.01M14 12h4"/></svg></div>
           <h4>Network Technician</h4>
           <span>Networking</span>
-          <div class="cert-open-row"><span class="cert-open-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2V5a2 2 0 0 1 2-2h5"/></svg>Click to Open</span><span class="cert-file-type">PDF</span></div>
-          <a class="download-certificate" href="Muthukrishnan J__NetworkTechnician_certificate.pdf" download="Network-Technician-Certificate.pdf" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download</a>
+          <p class="cert-description">Network certificate</p>
+          <div class="cert-action-row">
+            <span class="cert-open-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>Click to Open</span>
+            <span class="cert-file-type">PDF</span>
+          </div>
+          <a class="download-certificate" href="Muthukrishnan J__NetworkTechnician_certificate.pdf" download="Network-Technician-Certificate.pdf" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download PDF
+          </a>
         </div>
       </div>
 
@@ -1624,8 +1774,14 @@ main {
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
           <h4>Cloud Operations</h4>
           <span>Cloud Computing</span>
-          <div class="cert-open-row"><span class="cert-open-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2V5a2 2 0 0 1 2-2h5"/></svg>Click to Open</span><span class="cert-file-type">PDF</span></div>
-          <a class="download-certificate" href="Muthukrishnan J__Cloud_Operations__certificate .pdf" download="Cloud-Operations-Certificate.pdf" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download</a>
+          <p class="cert-description">Cloud operations certificate</p>
+          <div class="cert-action-row">
+            <span class="cert-open-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>Click to Open</span>
+            <span class="cert-file-type">PDF</span>
+          </div>
+          <a class="download-certificate" href="Muthukrishnan J__Cloud_Operations__certificate .pdf" download="Cloud-Operations-Certificate.pdf" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download PDF
+          </a>
         </div>
       </div>
 
@@ -1634,27 +1790,32 @@ main {
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"/></svg></div>
           <h4>Machine Learning for Natural Language Processing</h4>
           <span>Artificial Intelligence</span>
-          <div class="cert-open-row"><span class="cert-open-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2V5a2 2 0 0 1 2-2h5"/></svg>Click to Open</span><span class="cert-file-type">PDF</span></div>
-          <a class="download-certificate" href="Muthukrishnan J__Machine Learning for Natural Language Processing_certificate.pdf" download="Machine-Learning-NLP-Certificate.pdf" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download</a>
+          <p class="cert-description">Machine learning certificate</p>
+          <div class="cert-action-row">
+            <span class="cert-open-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>Click to Open</span>
+            <span class="cert-file-type">PDF</span>
+          </div>
+          <a class="download-certificate" href="Muthukrishnan J__Machine Learning for Natural Language Processing_certificate.pdf" download="Machine-Learning-for-Natural-Language-Processing-Certificate.pdf" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download PDF
+          </a>
         </div>
       </div>
 
-      <div class="cert-link oracle-cert-link" role="link" tabindex="0" data-cert="ORACLE.PNG" aria-label="Open Oracle Agentic AI certificate">
-        <div class="cert-card cert-card-image glass glass-hover reveal" style="--i:5">
-          <div class="cert-image-wrap">
-            <img src="ORACLE.PNG" alt="Oracle Agentic AI Certificate" loading="lazy">
-            <span class="cert-download-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Open Certificate</span>
+      <div class="cert-link" role="link" tabindex="0" data-cert="ORACLE.pdf" aria-label="Open Oracle Agentic AI certificate">
+        <div class="cert-card glass glass-hover reveal" style="--i:5">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7l8 4 8-4-8-4Z"/><path d="m4 12 8 4 8-4"/><path d="m4 17 8 4 8-4"/></svg></div>
+          <h4>Oracle Agentic AI</h4>
+          <span>Artificial Intelligence · Agentic AI</span>
+          <p class="cert-description">Oracle Agentic AI certificate</p>
+          <div class="cert-action-row">
+            <span class="cert-open-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>Click to Open</span>
+            <span class="cert-file-type">PDF</span>
           </div>
-          <div class="cert-image-content">
-            <div class="cert-icon oracle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7l8 4 8-4-8-4Z"/><path d="m4 12 8 4 8-4"/><path d="m4 17 8 4 8-4"/></svg></div>
-            <div><h4>Oracle Agentic AI</h4><span>Artificial Intelligence · Agentic AI</span></div>
-          </div>
-          <p class="cert-description">Oracle Agentic AI learning experience covering AI agents, intelligent automation, and practical concepts for building AI-powered solutions.</p>
-          <div class="cert-open-row"><span class="cert-open-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2V5a2 2 0 0 1 2-2h5"/></svg>Click to Open</span><span class="cert-file-type">PNG</span></div>
-          <a class="download-certificate" href="ORACLE.PNG" download="Oracle-Certificate.PNG" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download</a>
+          <a class="download-certificate" href="ORACLE.pdf" download="Oracle-Agentic-AI-Certificate.pdf" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download PDF
+          </a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
