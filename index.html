@@ -738,6 +738,306 @@ main > section { scroll-margin-top: 90px; }
 }
 </style>
 
+
+<style id="desktop-responsive-fix">
+/* ============================================================
+   DESKTOP / LAPTOP RESPONSIVE FIX
+   Keeps the existing visual style while making cards readable,
+   balanced and non-overflowing on laptop screens.
+============================================================ */
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: 28px;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+}
+
+/* Projects: separate cards, clean laptop grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
+
+.project-card-modern {
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.project-card-modern .project-visual {
+  min-height: 230px;
+  height: 230px;
+  flex: 0 0 auto;
+  border-right: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 30px;
+}
+
+.project-card-modern .project-info {
+  flex: 1;
+  min-width: 0;
+  padding: 30px;
+  justify-content: flex-start;
+}
+
+.project-card-modern .project-info h3 {
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.project-card-modern .project-info p {
+  font-size: 14px;
+  line-height: 1.72;
+  margin-bottom: 18px;
+}
+
+.project-card-modern .tech-row {
+  margin-top: auto;
+  margin-bottom: 22px;
+  padding-top: 6px;
+}
+
+.project-card-modern .project-btns {
+  margin-top: 0;
+}
+
+.browser-mock {
+  max-width: 360px;
+}
+
+.browser-body {
+  padding: 22px 20px;
+}
+
+.browser-title {
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+
+.browser-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.browser-mini-grid span {
+  height: 24px;
+  border-radius: 7px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: linear-gradient(135deg, rgba(59,130,246,.14), rgba(139,92,246,.08));
+}
+
+.covai-project-visual {
+  background:
+    radial-gradient(circle at 25% 25%, rgba(11,159,85,.25), transparent 58%),
+    radial-gradient(circle at 80% 80%, rgba(6,182,212,.18), transparent 58%),
+    rgba(255,255,255,.02);
+}
+
+/* Certificates */
+.cert-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.cert-link {
+  min-width: 0;
+  height: 100%;
+}
+
+.cert-card {
+  min-width: 0;
+  height: 100%;
+}
+
+.cert-card-image {
+  padding: 18px;
+}
+
+.cert-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,.22);
+}
+
+.cert-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .45s var(--ease), filter .45s ease;
+}
+
+.oracle-cert-link:hover .cert-image-wrap img {
+  transform: scale(1.035);
+  filter: brightness(1.06);
+}
+
+.cert-download-badge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(5,8,22,.78);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font: 600 11px/1 var(--font-accent);
+}
+
+.cert-download-badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+.cert-image-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.cert-image-content h4 {
+  margin-bottom: 3px;
+}
+
+.oracle-icon {
+  flex: 0 0 auto;
+}
+
+.cert-description {
+  color: var(--subtext);
+  font-size: 12.8px;
+  line-height: 1.65;
+  margin-top: -3px;
+}
+
+/* Better laptop spacing */
+@media (min-width: 901px) and (max-width: 1240px) {
+  .container {
+    padding-inline: 24px;
+  }
+
+  .nav-links {
+    gap: 22px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+
+  .hero-grid {
+    gap: 28px;
+  }
+
+  .projects-grid {
+    gap: 22px;
+  }
+
+  .project-card-modern .project-info {
+    padding: 26px;
+  }
+
+  .project-card-modern .project-visual {
+    padding: 24px;
+  }
+}
+
+/* Medium/tablet */
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card-modern .project-visual {
+    min-height: 250px;
+    height: 250px;
+  }
+
+  .cert-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Small mobile */
+@media (max-width: 560px) {
+  .container {
+    width: min(100% - 28px, var(--container));
+    padding-inline: 0;
+  }
+
+  .projects-grid,
+  .cert-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card-modern .project-visual {
+    min-height: 210px;
+    height: 210px;
+    padding: 20px 16px;
+  }
+
+  .project-card-modern .project-info {
+    padding: 24px 20px;
+  }
+
+  .project-card-modern .project-info h3 {
+    font-size: 23px;
+  }
+
+  .project-card-modern .project-info p {
+    font-size: 13.8px;
+  }
+
+  .cert-card-image {
+    padding: 16px;
+  }
+
+  .cert-description {
+    font-size: 12.5px;
+  }
+}
+
+/* Very narrow screens */
+@media (max-width: 380px) {
+  .project-btns .btn {
+    width: 100%;
+  }
+
+  .tech-pill {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -789,10 +1089,10 @@ main > section { scroll-margin-top: 90px; }
       <h1 class="hero-name grad-text">Muthukrishnan J</h1>
       <p class="hero-role">AI &amp; Data Science Student</p>
       <div class="type-wrap">
-        <span class="prefix">I Learnig About</span>
+        <span class="prefix">I'm Learning About</span>
         <span id="typed"></span><span class="caret"></span>
       </div>
-      <p class="hero-desc">Undergraduate in Artificial Intelligence &amp; Data Science, focused on  bulid projects, computer vision and cloud-native web apps — turning research ideas into working products.</p>
+      <p class="hero-desc">Undergraduate in Artificial Intelligence &amp; Data Science, focused on building projects, computer vision and cloud-native web apps — turning research ideas into working products.</p>
       <div class="hero-btns">
         <a href="Muthukrishnan J.pdf"
    class="btn btn-primary"
@@ -841,13 +1141,13 @@ main > section { scroll-margin-top: 90px; }
       <div class="about-text reveal">
         <p class="eyebrow">About Me</p>
         <h2>Turning curiosity into <span class="grad-text">working systems</span></h2>
-        <p>I'm Muthukrishnan J, an undergraduate pursuing B.Tech in Artificial Intelligence &amp; Data Science at St. Joseph's Institute of Technology. My interest sits at the intersection of bulid projects, computer vision and cloud infrastructure — I like understanding how systems learn, then shipping that understanding as something people can actually use.</p>
+        <p>I'm Muthukrishnan J, an undergraduate pursuing B.Tech in Artificial Intelligence &amp; Data Science at St. Joseph's Institute of Technology. My interest sits at the intersection of building projects, computer vision and cloud infrastructure — I like understanding how systems learn, then shipping that understanding as something people can actually use.</p>
         <p>From building a service-booking platform with Firebase and EmailJS to training a real-time helmet-detection model with OpenCV and YOLO, I learn by building — and I'm currently deepening my cloud and NLP skills to bridge research with production.</p>
         <p class="sig">Currently exploring <span>AI</span> · <span>Cloud</span> · <span>Web Development</span></p>
       </div>
       <div class="stats-grid reveal">
         <div class="stat-card glass glass-hover"><div class="stat-num" data-count="2">0</div><div class="stat-label">Projects</div></div>
-        <div class="stat-card glass glass-hover"><div class="stat-num" data-count="5">0</div><div class="stat-label">Certifications</div></div>
+        <div class="stat-card glass glass-hover"><div class="stat-num" data-count="6">0</div><div class="stat-label">Certifications</div></div>
         <div class="stat-card glass glass-hover"><div class="stat-num" data-count="2">0</div><div class="stat-label">Programming Languages</div></div>
         <div class="stat-card glass glass-hover"><div class="stat-num" data-count="1">0</div><div class="stat-label">Hackathon</div></div>
       </div>
@@ -905,61 +1205,106 @@ main > section { scroll-margin-top: 90px; }
       <h2>Completed <span class="grad-text">Projects</span></h2>
       <p>Real-world projects built with working backend systems, real-time data, admin panels and user-focused web experiences.</p>
     </div>
-    <div class="project-card glass reveal-scale" id="tiltProject">
-      <div class="project-visual">
-        <div class="browser-mock">
-          <div class="browser-bar"><span></span><span></span><span></span></div>
-          <div class="browser-body">
-            <div class="browser-title">A TO Z SERVICES</div>
-            <div class="browser-sub">Service booking &amp; management</div>
-            <div class="browser-bars"><span></span><span></span><span></span></div>
+
+    <div class="projects-grid">
+
+      <!-- A TO Z SERVICES -->
+      <article class="project-card project-card-modern glass glass-hover reveal-scale">
+        <div class="project-visual">
+          <div class="browser-mock">
+            <div class="browser-bar"><span></span><span></span><span></span></div>
+            <div class="browser-body">
+              <div class="browser-title">A TO Z SERVICES</div>
+              <div class="browser-sub">Service booking &amp; management</div>
+              <div class="browser-bars"><span></span><span></span><span></span></div>
+              <div class="browser-mini-grid">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="project-info">
-        <span class="project-tag">Web Platform</span>
-        <h3>A TO Z SERVICES</h3>
-        <p>A full service booking and management platform where users can browse services, book appointments, and receive automated email confirmations. It uses a real-time Firebase backend for live booking data and includes a dedicated admin panel for managing services and bookings.</p>
-        <div class="tech-row">
-          <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span class="tech-pill">JavaScript</span><span class="tech-pill">Firebase</span><span class="tech-pill">EmailJS</span>
-        </div>
-        <div class="project-btns">
-          <a href="https://thisaiatozservicea-creator.github.io/atozservices" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            Live Demo
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-          </a>
-        </div>
-      </div>
-    <!-- Covai Scrap Hub -->
-    <div class="project-card glass reveal-scale" style="margin-top:28px;">
-      <div class="project-visual">
-        <div class="browser-mock">
-          <div class="browser-bar"><span></span><span></span><span></span></div>
-          <div class="browser-body">
-            <div class="browser-title">COVAI SCRAP HUB</div>
-            <div class="browser-sub">Scrap selling &amp; doorstep pickup</div>
-            <div class="browser-bars"><span></span><span></span><span></span></div>
+
+        <div class="project-info">
+          <span class="project-tag">Web Platform</span>
+          <h3>A TO Z SERVICES</h3>
+          <p>
+            A full service booking and management platform where users can browse services,
+            book appointments, and receive automated email confirmations. It uses a real-time
+            Firebase backend for live booking data and includes a dedicated admin panel for
+            managing services and bookings.
+          </p>
+
+          <div class="tech-row">
+            <span class="tech-pill">HTML</span>
+            <span class="tech-pill">CSS</span>
+            <span class="tech-pill">JavaScript</span>
+            <span class="tech-pill">Firebase</span>
+            <span class="tech-pill">EmailJS</span>
+          </div>
+
+          <div class="project-btns">
+            <a href="https://thisaiatozservicea-creator.github.io/atozservices"
+               target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Live Demo
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 17 17 7"/>
+                <path d="M7 7h10v10"/>
+              </svg>
+            </a>
           </div>
         </div>
-      </div>
-      <div class="project-info">
-        <span class="project-tag">Web Platform</span>
-        <h3>COVAI SCRAP HUB</h3>
-        <p>COVAI SCRAP HUB is an online scrap-selling platform that connects customers with scrap collectors for easy doorstep pickup. Users can check today's scrap rates, book pickups, track their requests, and sell different types of scrap materials conveniently. The project uses a real-time backend to manage live scrap rates, pickup requests and tracking data, with a dedicated admin panel for managing platform operations.</p>
-        <div class="tech-row">
-          <span class="tech-pill">Web Development</span>
-          <span class="tech-pill">Real-time Backend</span>
-          <span class="tech-pill">Admin Panel</span>
-          <span class="tech-pill">Vercel</span>
+      </article>
+
+      <!-- COVAI SCRAP HUB -->
+      <article class="project-card project-card-modern glass glass-hover reveal-scale">
+        <div class="project-visual covai-project-visual">
+          <div class="browser-mock">
+            <div class="browser-bar"><span></span><span></span><span></span></div>
+            <div class="browser-body">
+              <div class="browser-title">COVAI SCRAP HUB</div>
+              <div class="browser-sub">Scrap selling &amp; doorstep pickup</div>
+              <div class="browser-bars"><span></span><span></span><span></span></div>
+              <div class="browser-mini-grid">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="project-btns">
-          <a href="https://covaiscraphup.vercel.app" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-            Live Demo
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-          </a>
+
+        <div class="project-info">
+          <span class="project-tag">Web Platform</span>
+          <h3>COVAI SCRAP HUB</h3>
+          <p>
+            COVAI SCRAP HUB is an online scrap-selling platform that connects customers
+            with scrap collectors for easy doorstep pickup. Users can check today's scrap
+            rates, book pickups, track their requests, and sell different types of scrap
+            materials conveniently. The project uses a real-time backend to manage live
+            scrap rates, pickup requests and tracking data, with a dedicated admin panel
+            for platform operations.
+          </p>
+
+          <div class="tech-row">
+            <span class="tech-pill">Web Development</span>
+            <span class="tech-pill">Real-time Backend</span>
+            <span class="tech-pill">Admin Panel</span>
+            <span class="tech-pill">Vercel</span>
+          </div>
+
+          <div class="project-btns">
+            <a href="https://covaiscraphup.vercel.app"
+               target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Live Demo
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 17 17 7"/>
+                <path d="M7 7h10v10"/>
+              </svg>
+            </a>
+          </div>
         </div>
-      </div>
-    
+      </article>
+
     </div>
   </div>
 </section>
@@ -1006,6 +1351,47 @@ main > section { scroll-margin-top: 90px; }
         <h4>Machine Learning for Natural Language Processing</h4><span>Artificial Intelligence</span>
       </div>
     </a>
+      <a href="oracle.jpeg"
+         download="oracle.jpeg"
+         class="cert-link oracle-cert-link"
+         aria-label="Download Oracle Agentic AI certificate">
+        <div class="cert-card cert-card-image glass glass-hover reveal" style="--i:5">
+          <div class="cert-image-wrap">
+            <img src="oracle.jpeg"
+                 alt="Oracle Agentic AI Certificate"
+                 loading="lazy">
+            <span class="cert-download-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v12"/>
+                <path d="m7 10 5 5 5-5"/>
+                <path d="M5 21h14"/>
+              </svg>
+              Download
+            </span>
+          </div>
+
+          <div class="cert-image-content">
+            <div class="cert-icon oracle-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3 4 7l8 4 8-4-8-4Z"/>
+                <path d="m4 12 8 4 8-4"/>
+                <path d="m4 17 8 4 8-4"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Oracle Agentic AI</h4>
+              <span>Artificial Intelligence · Agentic AI</span>
+            </div>
+          </div>
+
+          <p class="cert-description">
+            Completed an Oracle Agentic AI learning experience focused on AI agents,
+            intelligent automation, and practical concepts for building AI-powered solutions.
+          </p>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -1311,44 +1697,9 @@ function drawNet(){
 }
 drawNet();
 </script>
-<!-- Code injected by live-server -->
+
 <script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-  function sendEmail() {
+function sendEmail() {
     const name = document.getElementById("fname").value;
     const email = document.getElementById("femail").value;
     const subject = document.getElementById("fsubject").value;
@@ -1365,6 +1716,5 @@ ${message}`;
 `mailto:muthukrishnan11028@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 </script>
-
 </body>
 </html>
