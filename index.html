@@ -939,6 +939,145 @@ main {
   margin-top: -3px;
 }
 
+
+/* ============================================================
+   SUPER CERTIFICATE EXPERIENCE
+============================================================ */
+.cert-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.cert-link {
+  display: block;
+  min-width: 0;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cert-card {
+  position: relative;
+  min-width: 0;
+  min-height: 210px;
+  height: 100%;
+  padding: 26px;
+  overflow: hidden;
+  transition:
+    transform .35s cubic-bezier(.2,.8,.2,1),
+    border-color .35s ease,
+    box-shadow .35s ease,
+    background .35s ease;
+}
+
+.cert-card::before {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  background: radial-gradient(circle, rgba(6,182,212,.13), transparent 58%);
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+}
+
+.cert-link:hover .cert-card {
+  transform: translateY(-7px);
+  border-color: rgba(6,182,212,.48);
+  box-shadow: 0 18px 42px rgba(0,0,0,.24), 0 0 28px rgba(6,182,212,.10);
+}
+
+.cert-link:hover .cert-card::before {
+  opacity: 1;
+}
+
+.cert-link:focus-visible .cert-card {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.cert-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cert-open-row {
+  margin-top: auto;
+  padding-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cert-open-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--accent);
+  font: 600 11px/1 var(--font-accent);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.cert-open-label svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
+.cert-file-type {
+  color: var(--subtext);
+  font: 500 10px/1 var(--font-accent);
+  opacity: .82;
+}
+
+.cert-card-image {
+  padding: 18px;
+}
+
+.cert-image-wrap {
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+}
+
+.oracle-cert-link .cert-card {
+  border-color: rgba(255,255,255,.14);
+}
+
+.oracle-cert-link:hover .cert-card {
+  border-color: rgba(255,255,255,.34);
+  box-shadow: 0 20px 48px rgba(0,0,0,.28), 0 0 34px rgba(255,255,255,.07);
+}
+
+.oracle-cert-link .cert-download-badge {
+  background: rgba(0,0,0,.72);
+}
+
+@media (max-width: 1100px) {
+  .cert-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .cert-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .cert-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .cert-card {
+    min-height: 190px;
+    padding: 22px;
+  }
+}
+
 /* Better laptop spacing */
 @media (min-width: 901px) and (max-width: 1240px) {
   .container {
@@ -1318,46 +1457,167 @@ main {
     <div class="section-head reveal">
       <p class="eyebrow">Credentials</p>
       <h2>Certifications</h2>
-      <p>Continuous learning across cloud, networking and applied machine learning.</p>
+      <p>Continuous learning across cloud, networking, artificial intelligence and applied machine learning.</p>
     </div>
+
     <div class="cert-grid stagger">
-      <a href="Muthukrishnan J__Cloud_Foundations__certificate.pdf" target="_blank" class="cert-link">
-<div class="cert-card glass glass-hover reveal" style="--i:0">
-        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
-        <h4>Cloud Foundations</h4><span>Cloud Computing</span>
-      </div>
+
+      <a href="Muthukrishnan J__Cloud_Foundations__certificate.pdf"
+         target="_blank"
+         rel="noopener"
+         class="cert-link"
+         aria-label="Open Cloud Foundations certificate">
+        <div class="cert-card glass glass-hover reveal" style="--i:0">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+            </svg>
+          </div>
+          <h4>Cloud Foundations</h4>
+          <span>Cloud Computing</span>
+          <div class="cert-open-row">
+            <span class="cert-open-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 3h7v7"/>
+                <path d="M10 14 21 3"/>
+                <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
+              </svg>
+              Click to Open
+            </span>
+            <span class="cert-file-type">PDF</span>
+          </div>
+        </div>
       </a>
-      <a href="Muthukrishnan J __LinuxUnhatched_certificate.pdf" target="_blank" class="cert-link">
-<div class="cert-card glass glass-hover reveal" style="--i:1">
-        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
-        <h4>Linux Unhatched</h4><span>Operating Systems</span>
-      </div>
+
+      <a href="Muthukrishnan J __LinuxUnhatched_certificate.pdf"
+         target="_blank"
+         rel="noopener"
+         class="cert-link"
+         aria-label="Open Linux Unhatched certificate">
+        <div class="cert-card glass glass-hover reveal" style="--i:1">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="14" rx="2"/>
+              <path d="M8 21h8M12 18v3"/>
+            </svg>
+          </div>
+          <h4>Linux Unhatched</h4>
+          <span>Operating Systems</span>
+          <div class="cert-open-row">
+            <span class="cert-open-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 3h7v7"/>
+                <path d="M10 14 21 3"/>
+                <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
+              </svg>
+              Click to Open
+            </span>
+            <span class="cert-file-type">PDF</span>
+          </div>
+        </div>
       </a>
-      <a href="Muthukrishnan J__NetworkTechnician_certificate.pdf" target="_blank" class="cert-link">
-<div class="cert-card glass glass-hover reveal" style="--i:2">
-        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h.01M10 12h.01M14 12h4"/></svg></div>
-        <h4>Network Technician</h4><span>Networking</span>
-      </div>
+
+      <a href="Muthukrishnan J__NetworkTechnician_certificate.pdf"
+         target="_blank"
+         rel="noopener"
+         class="cert-link"
+         aria-label="Open Network Technician certificate">
+        <div class="cert-card glass glass-hover reveal" style="--i:2">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="6" width="20" height="12" rx="2"/>
+              <path d="M6 12h.01M10 12h.01M14 12h4"/>
+            </svg>
+          </div>
+          <h4>Network Technician</h4>
+          <span>Networking</span>
+          <div class="cert-open-row">
+            <span class="cert-open-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 3h7v7"/>
+                <path d="M10 14 21 3"/>
+                <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
+              </svg>
+              Click to Open
+            </span>
+            <span class="cert-file-type">PDF</span>
+          </div>
+        </div>
       </a>
-      <a href="Muthukrishnan J__Cloud_Operations__certificate .pdf" target="_blank" class="cert-link">
-<div class="cert-card glass glass-hover reveal" style="--i:3">
-        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-        <h4>Cloud Operations</h4><span>Cloud Computing</span>
-      </div>
-    </a>
-      <a href="Muthukrishnan J__Machine Learning for Natural Language Processing_certificate.pdf" target="_blank" class="cert-link">
-<div class="cert-card glass glass-hover reveal" style="--i:4">
-        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <h4>Machine Learning for Natural Language Processing</h4><span>Artificial Intelligence</span>
-      </div>
-    </a>
-      <a href="oracle.jpeg"
-         download="oracle.jpeg"
+
+      <a href="Muthukrishnan J__Cloud_Operations__certificate .pdf"
+         target="_blank"
+         rel="noopener"
+         class="cert-link"
+         aria-label="Open Cloud Operations certificate">
+        <div class="cert-card glass glass-hover reveal" style="--i:3">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2 2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h4>Cloud Operations</h4>
+          <span>Cloud Computing</span>
+          <div class="cert-open-row">
+            <span class="cert-open-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 3h7v7"/>
+                <path d="M10 14 21 3"/>
+                <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
+              </svg>
+              Click to Open
+            </span>
+            <span class="cert-file-type">PDF</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="Muthukrishnan J__Machine Learning for Natural Language Processing_certificate.pdf"
+         target="_blank"
+         rel="noopener"
+         class="cert-link"
+         aria-label="Open Machine Learning for Natural Language Processing certificate">
+        <div class="cert-card glass glass-hover reveal" style="--i:4">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h4>Machine Learning for Natural Language Processing</h4>
+          <span>Artificial Intelligence</span>
+          <div class="cert-open-row">
+            <span class="cert-open-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 3h7v7"/>
+                <path d="M10 14 21 3"/>
+                <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
+              </svg>
+              Click to Open
+            </span>
+            <span class="cert-file-type">PDF</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="oracle.png"
+         target="_blank"
+         rel="noopener"
          class="cert-link oracle-cert-link"
-         aria-label="Download Oracle Agentic AI certificate">
+         aria-label="Open Oracle Agentic AI certificate">
         <div class="cert-card cert-card-image glass glass-hover reveal" style="--i:5">
           <div class="cert-image-wrap">
-            <img src="oracle.jpeg"
+            <img src="oracle.png"
                  alt="Oracle Agentic AI Certificate"
                  loading="lazy">
             <span class="cert-download-badge">
@@ -1367,7 +1627,7 @@ main {
                 <path d="m7 10 5 5 5-5"/>
                 <path d="M5 21h14"/>
               </svg>
-              Download
+              Open Certificate
             </span>
           </div>
 
@@ -1387,11 +1647,25 @@ main {
           </div>
 
           <p class="cert-description">
-            Completed an Oracle Agentic AI learning experience focused on AI agents,
-            intelligent automation, and practical concepts for building AI-powered solutions.
+            Oracle Agentic AI learning experience covering AI agents, intelligent automation,
+            and practical concepts for building AI-powered solutions.
           </p>
+
+          <div class="cert-open-row">
+            <span class="cert-open-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 3h7v7"/>
+                <path d="M10 14 21 3"/>
+                <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
+              </svg>
+              Click to Open
+            </span>
+            <span class="cert-file-type">PNG</span>
+          </div>
         </div>
       </a>
+
     </div>
   </div>
 </section>
